@@ -12,10 +12,8 @@ import { useColorMode } from "@/hooks/useColorMode";
 import { queryClient } from "@/lib/react-query";
 import { Chakra } from "@/styles/ChakraCustomProvider";
 import "@/styles/globals.css";
-import {
-  rainbowkitDarkTheme,
-  rainbowkitLightTheme,
-} from "@/styles/theme/rainbowkit";
+
+import { type Theme, lightTheme, midnightTheme } from "@rainbow-me/rainbowkit";
 
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
@@ -68,7 +66,7 @@ const RainbowWrapper: FC<PropsWithChildren> = ({ children }) => {
   return (
     <RainbowKitProvider
       chains={chains}
-      theme={colorMode === "dark" ? rainbowkitDarkTheme : rainbowkitLightTheme}
+      theme={lightTheme()}
       showRecentTransactions={true}
     >
       {children}
