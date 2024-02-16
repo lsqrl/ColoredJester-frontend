@@ -10,7 +10,6 @@ import {
   buttonStyle,
   headingStyle,
   inputStyle,
-  skeletonStyle,
   tableStyle,
   tooltipStyle,
 } from "./components";
@@ -28,7 +27,6 @@ export const theme = extendTheme(
       Button: buttonStyle,
       Heading: headingStyle,
       Input: inputStyle,
-      Skeleton: skeletonStyle,
       Table: tableStyle,
       Tooltip: tooltipStyle,
     },

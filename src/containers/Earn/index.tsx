@@ -182,14 +182,12 @@ const EarnContainer: FC = () => {
             <Input placeholder="0.00" type="number" paddingRight="50px" 
               backgroundColor="#f0f0f0" color="black"
               onChange={(e) => {
-                const stringValue = e.target.value.toString();
+                const stringValue = e.target.value;
                 const trimmedValue = stringValue.endsWith(".") ? stringValue.slice(0, -1) : stringValue;
                 if(trimmedValue.length > 0) {
                 setBuyAmount(ethers.parseEther(trimmedValue)); 
                 setRedeemAmount(ethers.parseEther(trimmedValue))
-              } else if(stringValue.length === 0) {
-                setBuyAmount(BigInt(0));
-                setRedeemAmount(BigInt(0));}
+              } 
               }}
               />
           </div>
