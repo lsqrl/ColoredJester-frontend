@@ -42,7 +42,7 @@ export const theme = extendTheme(
           //   palette.colors.primary["main"],
           //   palette.colors.primary["main.dark"]
           // ),
-          background: "linear-gradient(to bottom, rgb(14, 142, 227), rgb(230, 188, 39))",
+          background: "linear-gradient(to bottom, rgb(14, 142, 227), rgb(122, 165, 133))",
           minHeight: "100vh",
           color: mode(
             colorMode,

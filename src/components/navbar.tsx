@@ -10,16 +10,12 @@ import {
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Circle } from "phosphor-react";
 import { type FC, Fragment } from "react";
 
 import {
-  MagicMarker as MagicMarkerIcon,
   ThreeDot as ThreeDotIcon,
-  OpusLogo as OpusLogoIcon,
-  Discord as DiscordIcon,
+  Book as BookIcon,
 } from "@/assets/svgs";
-import { HamburgerMenu } from "@/assets/svgs";
 import { useColorMode } from "@/hooks/useColorMode";
 import classNames from "classnames";
 
@@ -29,24 +25,7 @@ interface Props {
   onSetSidebarOpen: (open: boolean) => void;
 }
 
-const Navbar: FC<Props> = ({ onSetSidebarOpen }) => {
-  const { pathname } = useRouter();
-  const { mode, colorMode } = useColorMode();
-
-
-  const handleOpenSideBar = () => onSetSidebarOpen(true);
-
-  const unactiveClassButton = classNames([
-    "border-green-500 border-2",
-    "text-white font-bold py-2 px-4 rounded",
-    "bg-transparent mr-2",
-  ])
-  const activeClassButton = classNames([
-    "bg-green-500 hover:bg-green-700",
-    "text-white font-bold py-2 px-4 rounded",
-    "ml-2 mr-4",
-  ])
-
+const Navbar: FC<Props> = () => {
   return (
     <nav>
       <div className="flex items-center w-full px-12 my-5">
@@ -63,14 +42,6 @@ const Navbar: FC<Props> = ({ onSetSidebarOpen }) => {
           }}
         >
           <div className="flex items-center">
-            {/* <Link href="/trade">
-              <button 
-                className={pathname === '/trade' ? unactiveClassButton : activeClassButton}
-                disabled={pathname === '/trade'}  
-              >
-                Start Trading
-              </button>
-            </Link> */}
             <ConnectButton chainStatus="full" />
           </div>
 
@@ -97,9 +68,8 @@ const Navbar: FC<Props> = ({ onSetSidebarOpen }) => {
                     border: "transparent",
                     padding: "5px",
                     borderRadius: "5px",
-                  }}
-                  _hover={{
-                    backgroundColor: mode("primary.200", "primary.200.dark"),
+                    backgroundColor: "white",
+                    color: "black"
                   }}
                 >
                   <div
@@ -114,43 +84,15 @@ const Navbar: FC<Props> = ({ onSetSidebarOpen }) => {
                         padding: "5px",
                       }}
                     >
-                      <MagicMarkerIcon width={24} height={24} />
+                      <BookIcon width={24} height={24} />
                     </span>
-                    <span>Tutorial</span>
+                    <span>Docs</span>
                   </div>
-                </MenuItem>
-                <MenuItem
-                  style={{
-                    width: "95%",
-                    border: "transparent",
-                    padding: "10px 5px",
-                    borderRadius: "5px",
-                  }}
-                  _hover={{
-                    backgroundColor: mode("primary.200", "primary.200.dark"),
-                  }}
-                >
-                  {/* <div className="block pr-1">
-                    <OpusLogoIcon width={30} height={30} />
-                  </div> */}
                 </MenuItem>
               </MenuList>
             </Menu>
           </div>
         </div>
-
-        <Box
-          bg={mode("primary.200", "primary.200.dark")}
-          style={{
-            borderRadius: "50%",
-            marginLeft: "10px",
-            padding: "5px",
-          }}
-          className="sm:hidden"
-          onClick={handleOpenSideBar}
-        >
-          <HamburgerMenu width={32} height={32} />
-        </Box>
       </div>
     </nav>
   );

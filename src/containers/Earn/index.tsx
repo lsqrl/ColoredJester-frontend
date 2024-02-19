@@ -1,13 +1,14 @@
 // const mobileHiddenColumnClass = "hidden md:table-cell";
-import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { FC, useEffect, useState } from "react";
 
 import classNames from "classnames";
-import { Box, Input, InputGroup, Text } from "@chakra-ui/react";
+import { Box, Input, Link, InputGroup, Text, VStack } from "@chakra-ui/react";
 import ABI from '../../contracts/greaterFool.abi'
 
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { useAccount, usePrepareContractWrite, useContractWrite, useContractRead, useWaitForTransaction, erc20ABI } from "wagmi";
+
+import { GreaterFool, Discord } from '@/assets/svgs'; 
 
 import { ethers } from "ethers";
 
@@ -156,14 +157,17 @@ const EarnContainer: FC = () => {
       "flex flex-col", 
       "items-center justify-center w-full min-h-screen", 
       "w-2/4 h-1/2",
-      "p-5 mx-auto font-sans gap-30"])}>
+      "p-3 mx-auto font-sans gap-30",
+      "font-mono"])}
+      marginTop="-150px">
+      <GreaterFool />
         
-        <Box maxW={{ base: "90%", md: "300px" }} mt={2} mb={80} position="relative">
+        <Box maxW={{ base: "90%", md: "300px" }} mt={-20} mb={80} position="relative">
         <Text 
           width="100%"
           textAlign="center" 
           marginTop="2"
-          whiteSpace="nowrap">Current GFOOL price: {ethers.formatUnits(bidPrice, 18)} USDC</Text>
+          whiteSpace="nowrap">Current GFOOL price: {Number(ethers.formatUnits(bidPrice, 18)).toFixed(4)} USDC</Text>
         <ButtonGroup isAttached variant="outline" marginBottom={2}>
           <Button
             backgroundColor={isButtonBuyClicked ? "darkgreen" : "gray"}
@@ -224,10 +228,25 @@ const EarnContainer: FC = () => {
                 whiteSpace="nowrap"
               >
                 {isButtonBuyClicked ? "You will spend " : "You will get "} 
-                {isButtonBuyClicked ? ethers.formatUnits(previewBuyAmount ? previewBuyAmount : 0 ,18) : 
-                  ethers.formatUnits(previewRedeemAmount ? previewRedeemAmount : 0 ,18)} USDC
+                {isButtonBuyClicked ? Number(ethers.formatUnits(previewBuyAmount ? previewBuyAmount : 0 ,18)).toFixed(4) : 
+                  Number(ethers.formatUnits(previewRedeemAmount ? previewRedeemAmount : 0 ,18)).toFixed(4)} USDC
               </Text>
               )}
+        </Box>
+        <Box as="footer" width="100%" position="fixed" bottom="0" p="10px" bg="rgb(14, 142, 227)">
+          <Text textAlign="center">Follow us on{" "}
+            <Link href="https://discord.com" isExternal color="yellow.500">
+              Discord
+            </Link>
+            ,{" "}
+            <Link href="https://discord.com" isExternal color="yellow.500">
+              Telegram
+            </Link>
+            {" "}and{" "}
+            <Link href="https://discord.com" isExternal color="yellow.500">
+              X (Twitter)
+            </Link>
+          </Text>
         </Box>
     </Box>
   );
