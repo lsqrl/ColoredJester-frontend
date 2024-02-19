@@ -34,11 +34,6 @@ const Navbar: FC<Props> = () => {
   return (
     <nav>
       <div className="flex items-center w-full px-12 my-5">
-<div className="flex flex-grow gap-6">
-          <Link href="/earn">
-          </Link>
-        </div>
-
         <div
           style={{
             display: "flex",
