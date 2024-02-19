@@ -44,6 +44,7 @@ export const theme = extendTheme(
           // ),
           background: "linear-gradient(to bottom, rgb(14, 142, 227), rgb(122, 165, 133))",
           minHeight: "100vh",
+          backgroundAttachment: "fixed",
           color: mode(
             colorMode,
             palette.font["main"],
