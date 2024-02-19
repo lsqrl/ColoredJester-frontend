@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react";
 
 import classNames from "classnames";
-import { Box, Image, Input, Link, InputGroup, Text, VStack } from "@chakra-ui/react";
+import { Box, Image, Input, Link, InputGroup, Text, Stack } from "@chakra-ui/react";
 import ABI from '../../contracts/greaterFool.abi'
 
 import { Button, ButtonGroup } from '@chakra-ui/react';
@@ -237,7 +237,8 @@ const EarnContainer: FC = () => {
               </Text>
               )}
         </Box>
-        <Box as="footer" width="100%" position="fixed" bottom="0" p="10px" bg="rgb(14, 142, 227)">
+        <Box as="footer" width="100%" position="fixed" bottom="0" p={{ base: "2", md: "4" }} bg="rgb(14, 142, 227)">
+        <Stack direction={{ base: "column", md: "row" }} spacing="3" align="center">
           <Text textAlign="center">Follow us on{" "}
             <Link href="https://discord.com" isExternal color="yellow.500">
               Discord
@@ -251,6 +252,7 @@ const EarnContainer: FC = () => {
               X (Twitter)
             </Link>
           </Text>
+        </Stack>
         </Box>
     </Box>
   );
