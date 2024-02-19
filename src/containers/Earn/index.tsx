@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react";
 
 import classNames from "classnames";
-import { Box, Input, Link, InputGroup, Text, VStack } from "@chakra-ui/react";
+import { Box, Image, Input, Link, InputGroup, Text, VStack } from "@chakra-ui/react";
 import ABI from '../../contracts/greaterFool.abi'
 
 import { Button, ButtonGroup } from '@chakra-ui/react';
@@ -160,8 +160,11 @@ const EarnContainer: FC = () => {
       "p-3 mx-auto font-sans gap-30",
       "font-mono"
       ])}
-      marginTop="-100px">
+      marginTop="-100px"><Box 
+      width={{ base: "1000px", md: "1500px" }} 
+    >
       <GreaterFool />
+</Box>
         
         <Box maxW={{ base: "90%", md: "300px" }} mt={-2} mb={80} position="relative">
         <Text 
