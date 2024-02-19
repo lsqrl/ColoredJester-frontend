@@ -163,8 +163,10 @@ const EarnContainer: FC = () => {
       marginTop="-100px"><Box 
       width={{ base: "1000px", md: "1500px" }} 
     >
+      <Link href="https://your-link.com" isExternal>
       <GreaterFool />
-</Box>
+      </Link>
+    </Box>
         
         <Box maxW={{ base: "90%", md: "300px" }} mt={-2} mb={80} position="relative">
         <Text 
@@ -237,7 +239,7 @@ const EarnContainer: FC = () => {
               </Text>
               )}
         </Box>
-        <Box as="footer" width="100%" position="fixed" bottom="0" p={{ base: "2", md: "4" }} bg="rgb(14, 142, 227)">
+        <Box as="footer" width="100%" position={{ base: "fixed", md: "fixed" }} bottom="0" p="4" bg="rgb(14, 142, 227)">
         <Stack direction={{ base: "column", md: "row" }} spacing="3" align="center">
           <Text textAlign="center">Follow us on{" "}
             <Link href="https://discord.com" isExternal color="yellow.500">
