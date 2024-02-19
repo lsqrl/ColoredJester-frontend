@@ -1,6 +1,7 @@
 import {
   Box,
   IconButton,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -9,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { ThemeProvider } from 'styled-components';
 import { ConnectButton, Theme } from "@rainbow-me/rainbowkit";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { type FC, Fragment } from "react";
 
@@ -34,7 +34,7 @@ const Navbar: FC<Props> = () => {
   return (
     <nav>
       <div className="flex items-center w-full px-12 my-5">
-        <div className="flex flex-grow gap-6">
+<div className="flex flex-grow gap-6">
           <Link href="/earn">
           </Link>
         </div>
@@ -51,7 +51,6 @@ const Navbar: FC<Props> = () => {
             <ConnectButton chainStatus="full"/>
           </ThemeProvider>
           </div>
-
           <div className="hidden sm:flex">
 
             <Menu>
@@ -79,6 +78,7 @@ const Navbar: FC<Props> = () => {
                     color: "black"
                   }}
                 >
+                <Link href="https://your-link.com" target="_blank">
                   <div
                     style={{
                       display: "flex",
@@ -95,6 +95,7 @@ const Navbar: FC<Props> = () => {
                     </span>
                     <span>Docs</span>
                   </div>
+                    </Link>
                 </MenuItem>
               </MenuList>
             </Menu>
