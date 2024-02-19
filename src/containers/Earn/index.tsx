@@ -163,9 +163,7 @@ const EarnContainer: FC = () => {
       marginTop="-100px"><Box 
       width={{ base: "1000px", md: "1500px" }} 
     >
-      <Link href="https://your-link.com" isExternal>
       <GreaterFool />
-      </Link>
     </Box>
         
         <Box maxW={{ base: "90%", md: "300px" }} mt={-2} mb={80} position="relative">

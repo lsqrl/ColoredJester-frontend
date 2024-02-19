@@ -58,15 +58,17 @@ const wagmiConfig = createConfig({
   webSocketPublicClient,
 });
 
+
 // this wrapper is necessary, as it must be nested inside the ChakraProvider,
 // in that point can correctly read the colorMode
 const RainbowWrapper: FC<PropsWithChildren> = ({ children }) => {
-  const { colorMode } = useColorMode();
 
   return (
     <RainbowKitProvider
       chains={chains}
-      theme={lightTheme()}
+      theme={lightTheme({
+        ...lightTheme.accentColors.red
+      })}
       showRecentTransactions={true}
     >
       {children}

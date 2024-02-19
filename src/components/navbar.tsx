@@ -7,7 +7,8 @@ import {
   MenuList,
   Text,
 } from "@chakra-ui/react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ThemeProvider } from 'styled-components';
+import { ConnectButton, Theme } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { type FC, Fragment } from "react";
@@ -24,7 +25,11 @@ import classNames from "classnames";
 interface Props {
   onSetSidebarOpen: (open: boolean) => void;
 }
-
+const theme = {
+  colors: {
+    primary: 'red',
+  },
+};
 const Navbar: FC<Props> = () => {
   return (
     <nav>
@@ -42,7 +47,9 @@ const Navbar: FC<Props> = () => {
           }}
         >
           <div className="flex items-center">
-            <ConnectButton chainStatus="full" />
+          <ThemeProvider theme={theme}>
+            <ConnectButton chainStatus="full"/>
+          </ThemeProvider>
           </div>
 
           <div className="hidden sm:flex">
