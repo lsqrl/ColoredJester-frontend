@@ -158,11 +158,12 @@ const EarnContainer: FC = () => {
       "items-center justify-center w-full min-h-screen", 
       "w-2/4 h-1/2",
       "p-3 mx-auto font-sans gap-30",
-      "font-mono"])}
-      marginTop="-150px">
+      "font-mono"
+      ])}
+      marginTop="-100px">
       <GreaterFool />
         
-        <Box maxW={{ base: "90%", md: "300px" }} mt={-20} mb={80} position="relative">
+        <Box maxW={{ base: "90%", md: "300px" }} mt={-2} mb={80} position="relative">
         <Text 
           width="100%"
           textAlign="center" 
