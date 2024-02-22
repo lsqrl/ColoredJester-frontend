@@ -86,8 +86,19 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.input-with-unit-wrapper::after {
+.input-with-gfool-wrapper::after {
   content: "GFOOL";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: gray; /* Adjust the color as needed */
+}
+
+
+.input-with-usdc-wrapper::after {
+  content: "USDC";
   position: absolute;
   right: 20px;
   top: 50%;
