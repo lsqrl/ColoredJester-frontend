@@ -1,2 +1,2 @@
-# OpusFrontend-POC
-Frontend for the Opus Digital protocol, in React
+# GreaterFoolFrontend-POC
+Frontend for the GreaterFool Digital protocol, in React

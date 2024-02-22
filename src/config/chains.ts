@@ -6,8 +6,8 @@ import { CoreInstance, coreConfig } from "@/config/env";
 
 export const testNetwork: Chain = {
   ...arbitrum,
-  name: "opus test network",
-  network: "opus test network",
+  name: "gf test network",
+  network: "gf test network",
   id: 98745,
   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
   blockExplorers: {

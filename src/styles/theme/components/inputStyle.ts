@@ -12,21 +12,4 @@ export const inputStyle: StyleConfig = {
       lineHeight: "115%",
     },
   },
-  variants: {
-    opus: ({ colorMode }) => ({
-      bg: mode(
-        colorMode,
-        palette.colors.primary[200],
-        palette.colors.primary["200.dark"]
-      ),
-      background: mode(
-        colorMode,
-        palette.colors.primary[200],
-        palette.colors.primary["200.dark"]
-      ),
-    }),
-  },
-  defaultProps: {
-    variant: "opus",
-  },
 };
