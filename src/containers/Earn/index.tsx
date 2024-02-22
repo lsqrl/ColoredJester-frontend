@@ -280,15 +280,11 @@ const EarnContainer: FC = () => {
         <Box as="footer" width="100%" position={{ base: "fixed", md: "fixed" }} bottom="0" p="4" bg="rgb(14, 142, 227)">
         <Stack direction={{ base: "column", md: "row" }} spacing="3" align="center">
           <Text textAlign="center">Follow us on{" "}
-            <Link href="https://discord.com" isExternal color="yellow.500">
+            <Link href="https://discord.gg/2TDmjAJz" isExternal color="yellow.500">
               Discord
             </Link>
-            ,{" "}
-            <Link href="https://discord.com" isExternal color="yellow.500">
-              Telegram
-            </Link>
             {" "}and{" "}
-            <Link href="https://discord.com" isExternal color="yellow.500">
+            <Link href="https://twitter.com/JesterOfTheMoon" isExternal color="yellow.500">
               X (Twitter)
             </Link>
           </Text>
