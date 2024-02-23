@@ -20,12 +20,12 @@ const EarnContainer: FC = () => {
   const [isButtonRedeemClicked, setButtonRedeemClicked] = useState(false);
 
   const [buyAmount, setBuyAmount] = useState(BigInt(0));
-  const [minGfoolOut, setMinGfoolOut] = useState(BigInt(0));
+  const [minGjestOut, setMinGjestOut] = useState(BigInt(0));
   const [redeemAmount, setRedeemAmount] = useState(BigInt(0));
   const [minOut, setMinOut] = useState(BigInt(0));
 
   const [underlyingTokenDecimals, setUnderlyingTokenDecimals] = useState<number | undefined>(undefined);
-  const [gfoolTokenDecimals, setGfoolTokenDecimals] = useState<number | undefined>(undefined);
+  const [gjestTokenDecimals, setGjestTokenDecimals] = useState<number | undefined>(undefined);
 
   const [previewBuyAmount, setPreviewBuyAmount] = useState<bigint | undefined>(undefined);
   const [previewRedeemAmount, setPreviewRedeemAmount] = useState<bigint | undefined>(undefined);
@@ -48,7 +48,7 @@ const EarnContainer: FC = () => {
     address: CONTRACT_ADDRESS,
     abi: ABI,
     functionName: "buy",
-    args: [buyAmount, minGfoolOut, signerAddress!],
+    args: [buyAmount, minGjestOut, signerAddress!],
   });
 
   const { config : configRedeem } = usePrepareContractWrite({
@@ -97,7 +97,7 @@ const EarnContainer: FC = () => {
     address: CONTRACT_ADDRESS,
     abi : ABI,
     functionName: "previewRedeem",
-    args: [ethers.parseUnits("1", gfoolTokenDecimals!)],
+    args: [ethers.parseUnits("1", gjestTokenDecimals!)],
     watch: true
   });
 
@@ -148,7 +148,7 @@ const EarnContainer: FC = () => {
     watch: true
   });
 
-  const {data : gfoolTokenDecimalsData, refetch : refetchGfoolTokenDecimals} = useContractRead({
+  const {data : gjestTokenDecimalsData, refetch : refetchGjestTokenDecimals} = useContractRead({
     address: CONTRACT_ADDRESS,
     abi : ABI,
     functionName: "decimals",
@@ -160,11 +160,11 @@ const EarnContainer: FC = () => {
   const isRedeemButtonDisabled = isRedeemLoading || !isConnected || signerTokenBalance! < redeemAmount || redeemAmount === BigInt(0);
 
   useEffect(() => {
-    setBuyPrice(buyPriceData && gfoolTokenDecimals && underlyingTokenDecimals ? 
-        BigInt(10**(gfoolTokenDecimals! + underlyingTokenDecimals!)) / (buyPriceData[0] - buyPriceData[1]) : BigInt(0));
+    setBuyPrice(buyPriceData && gjestTokenDecimals && underlyingTokenDecimals ? 
+        BigInt(10**(gjestTokenDecimals! + underlyingTokenDecimals!)) / (buyPriceData[0] - buyPriceData[1]) : BigInt(0));
     console.log("sellPriceData", sellPriceData);  
     setSellPrice(sellPriceData? sellPriceData[0] : BigInt(0));
-    setMinGfoolOut(previewBuyData ? (previewBuyData[0] - previewBuyData[1]) * BigInt(95) / BigInt(100) : BigInt(0));
+    setMinGjestOut(previewBuyData ? (previewBuyData[0] - previewBuyData[1]) * BigInt(95) / BigInt(100) : BigInt(0));
     setMinOut(previewRedeemData?.[0] ? previewRedeemData[0] * BigInt(95) / BigInt(100) : BigInt(0));
     setMinOut(minOut);
     setSignerUnderlyingAllowance(signerUnderlyingAllowanceData);
@@ -173,7 +173,7 @@ const EarnContainer: FC = () => {
     setPreviewBuyAmount(previewBuyData ? previewBuyData[0] - previewBuyData[1] : BigInt(0));
     setPreviewRedeemAmount(previewRedeemData?.[0]);
     setUnderlyingTokenDecimals(underlyingTokenDecimalsData);
-    setGfoolTokenDecimals(gfoolTokenDecimalsData);
+    setGjestTokenDecimals(gjestTokenDecimalsData);
   }, [buyPriceData,
       sellPriceData,
       previewBuyData, 
@@ -202,13 +202,13 @@ const EarnContainer: FC = () => {
           width="100%"
           textAlign="center" 
           marginTop="2"
-          whiteSpace="nowrap">GFOOL buy price: {Number(ethers.formatUnits(buyPrice ? buyPrice : 0, underlyingTokenDecimals!))} USDT</Text> }
+          whiteSpace="nowrap">GJEST buy price: {Number(ethers.formatUnits(buyPrice ? buyPrice : 0, underlyingTokenDecimals!))} USDT</Text> }
         {isButtonRedeemClicked &&
         <Text
           width="100%"
           textAlign="center"
           marginTop="2"
-          whiteSpace="nowrap">GFOOL redeem price: {Number(ethers.formatUnits(sellPrice ? sellPrice : 0, underlyingTokenDecimals!)).toFixed(6)} USDT</Text> }
+          whiteSpace="nowrap">GJEST redeem price: {Number(ethers.formatUnits(sellPrice ? sellPrice : 0, underlyingTokenDecimals!)).toFixed(6)} USDT</Text> }
         <ButtonGroup isAttached variant="outline" marginBottom={2}>
           <Button
             backgroundColor={isButtonBuyClicked ? "darkgreen" : "gray"}
@@ -224,7 +224,7 @@ const EarnContainer: FC = () => {
 
         <InputGroup>
           <div className={
-            isButtonBuyClicked ? "input-with-usdt-wrapper" : "input-with-gfool-wrapper"}>
+            isButtonBuyClicked ? "input-with-usdt-wrapper" : "input-with-gjest-wrapper"}>
             <Input placeholder="0.00" type="number" paddingRight="50px" 
               backgroundColor="#f0f0f0" color="black"
               onChange={(e) => {
@@ -232,7 +232,7 @@ const EarnContainer: FC = () => {
                 const trimmedValue = stringValue.endsWith(".") ? stringValue.slice(0, -1) : stringValue;
                 if(trimmedValue.length > 0) {
                   setBuyAmount(ethers.parseUnits(trimmedValue, underlyingTokenDecimals!)); 
-                  setRedeemAmount(ethers.parseUnits(trimmedValue, gfoolTokenDecimals!))
+                  setRedeemAmount(ethers.parseUnits(trimmedValue, gjestTokenDecimals!))
                 } 
               }}
             />
@@ -249,7 +249,7 @@ const EarnContainer: FC = () => {
             >
               {isButtonBuyClicked ? signerUnderlyingBalance! < buyAmount ? `Insufficient USDT balance` :
                 (signerUnderlyingAllowance! < buyAmount ? "Approve USDT"  : "Buy") : 
-                isRedeemButtonDisabled ? "Insufficient GFOOL balance" : "Redeem"}
+                isRedeemButtonDisabled ? "Insufficient GJEST balance" : "Redeem"}
             </Button>)}
             {(isButtonBuyClicked || isButtonRedeemClicked) && (
               <Text 
@@ -259,8 +259,8 @@ const EarnContainer: FC = () => {
                 whiteSpace="nowrap"
               >
                 {isButtonBuyClicked ? "You receive " : "You redeem "} 
-                {isButtonBuyClicked ? Number(ethers.formatUnits(previewBuyAmount ? previewBuyAmount : 0, gfoolTokenDecimals!)) : 
-                  Number(ethers.formatUnits(redeemAmount,gfoolTokenDecimals!))} GFOOL tokens
+                {isButtonBuyClicked ? Number(ethers.formatUnits(previewBuyAmount ? previewBuyAmount : 0, gjestTokenDecimals!)) : 
+                  Number(ethers.formatUnits(redeemAmount,gjestTokenDecimals!))} GJEST tokens
               </Text>
               )}
               
