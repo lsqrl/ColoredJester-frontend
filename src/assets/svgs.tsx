@@ -3,7 +3,7 @@ import CloseButton from "./svgs/CloseButton.svg";
 import Dashboard from "./svgs/Dashboard.svg";
 import Discord from "./svgs/Discord.svg";
 import Error from "./svgs/Error.svg";
-import GreaterFool from "./svgs/GreaterFool.svg";
+import ColoredJester from "./svgs/ColoredJester.svg";
 import Information from "./svgs/Information.svg";
 import Services from "./svgs/Services.svg";
 import Star from "./svgs/Star.svg";
@@ -18,7 +18,7 @@ export {
   Dashboard,
   Discord,
   Error,
-  GreaterFool,
+  ColoredJester,
   Information,
   Services,
   Star,

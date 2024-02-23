@@ -97,8 +97,8 @@ input[type="number"] {
 }
 
 
-.input-with-usdc-wrapper::after {
-  content: "USDC";
+.input-with-usdt-wrapper::after {
+  content: "USDT";
   position: absolute;
   right: 20px;
   top: 50%;

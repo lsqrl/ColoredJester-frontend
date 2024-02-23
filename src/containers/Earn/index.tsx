@@ -3,12 +3,12 @@ import { FC, useEffect, useState } from "react";
 
 import classNames from "classnames";
 import { Box, Image, Input, Link, InputGroup, Text, Stack } from "@chakra-ui/react";
-import ABI from '../../contracts/greaterFool.abi'
+import ABI from '../../contracts/coloredJester.abi'
 
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { useAccount, usePrepareContractWrite, useContractWrite, useContractRead, useWaitForTransaction, erc20ABI } from "wagmi";
 
-import { GreaterFool, Discord } from '@/assets/svgs'; 
+import { ColoredJester, Discord } from '@/assets/svgs'; 
 
 import { ethers } from "ethers";
 
@@ -40,9 +40,9 @@ const EarnContainer: FC = () => {
   const { isConnected, address: signerAddress } = useAccount();
 
   // const CONTRACT_ADDRESS = "0xA56e6a8C2e764613380B3756f5cb68b76a04f261"; // sepolia
-  const CONTRACT_ADDRESS = "0x2EF87dEC86A78C490dfeE19D925f63AA85EEb85B" // arbitrum
+  const CONTRACT_ADDRESS = "0x6640F572dd131E0870154fFbe35609fC84bD605f" // arbitrum
   // const UNDERLYING_ADDRESS = "0xfbB10b48f10Aad0E2D69463E93a563965993cA54"; // sepolia 
-  const UNDERLYING_ADDRESS = "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8" // arbitrum USDC
+  const UNDERLYING_ADDRESS = "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9" // arbitrum USDT
 
   const { config : configBuy } = usePrepareContractWrite({
     address: CONTRACT_ADDRESS,
@@ -193,7 +193,7 @@ const EarnContainer: FC = () => {
       marginTop="-100px"><Box 
       width={{ base: "1000px", md: "1500px" }} 
     >
-      <GreaterFool />
+      <ColoredJester />
     </Box>
         
         <Box maxW={{ base: "90%", md: "300px" }} mt={-2} mb={80} position="relative">
@@ -202,13 +202,13 @@ const EarnContainer: FC = () => {
           width="100%"
           textAlign="center" 
           marginTop="2"
-          whiteSpace="nowrap">GFOOL buy price: {Number(ethers.formatUnits(buyPrice ? buyPrice : 0, underlyingTokenDecimals!))} USDC</Text> }
+          whiteSpace="nowrap">GFOOL buy price: {Number(ethers.formatUnits(buyPrice ? buyPrice : 0, underlyingTokenDecimals!))} USDT</Text> }
         {isButtonRedeemClicked &&
         <Text
           width="100%"
           textAlign="center"
           marginTop="2"
-          whiteSpace="nowrap">GFOOL redeem price: {Number(ethers.formatUnits(sellPrice ? sellPrice : 0, underlyingTokenDecimals!)).toFixed(6)} USDC</Text> }
+          whiteSpace="nowrap">GFOOL redeem price: {Number(ethers.formatUnits(sellPrice ? sellPrice : 0, underlyingTokenDecimals!)).toFixed(6)} USDT</Text> }
         <ButtonGroup isAttached variant="outline" marginBottom={2}>
           <Button
             backgroundColor={isButtonBuyClicked ? "darkgreen" : "gray"}
@@ -224,7 +224,7 @@ const EarnContainer: FC = () => {
 
         <InputGroup>
           <div className={
-            isButtonBuyClicked ? "input-with-usdc-wrapper" : "input-with-gfool-wrapper"}>
+            isButtonBuyClicked ? "input-with-usdt-wrapper" : "input-with-gfool-wrapper"}>
             <Input placeholder="0.00" type="number" paddingRight="50px" 
               backgroundColor="#f0f0f0" color="black"
               onChange={(e) => {
@@ -247,8 +247,8 @@ const EarnContainer: FC = () => {
               isDisabled={(isButtonBuyClicked && isBuyButtonDisabled) || (isButtonRedeemClicked && isRedeemButtonDisabled)}
               onClick={() => isButtonBuyClicked ? signerUnderlyingAllowance! < buyAmount ? approveUnderlying?.() : buy?.() : redeem?.()}
             >
-              {isButtonBuyClicked ? signerUnderlyingBalance! < buyAmount ? `Insufficient USDC balance` :
-                (signerUnderlyingAllowance! < buyAmount ? "Approve USDC"  : "Buy") : 
+              {isButtonBuyClicked ? signerUnderlyingBalance! < buyAmount ? `Insufficient USDT balance` :
+                (signerUnderlyingAllowance! < buyAmount ? "Approve USDT"  : "Buy") : 
                 isRedeemButtonDisabled ? "Insufficient GFOOL balance" : "Redeem"}
             </Button>)}
             {(isButtonBuyClicked || isButtonRedeemClicked) && (
@@ -273,7 +273,7 @@ const EarnContainer: FC = () => {
               >
                 {isButtonBuyClicked ? "You spend " : "You get "} 
                 {isButtonBuyClicked ? Number(ethers.formatUnits(buyAmount ? buyAmount : 0 ,underlyingTokenDecimals!)) : 
-                  Number(ethers.formatUnits(previewRedeemAmount ? previewRedeemAmount : 0 ,underlyingTokenDecimals!))} USDC
+                  Number(ethers.formatUnits(previewRedeemAmount ? previewRedeemAmount : 0 ,underlyingTokenDecimals!))} USDT
               </Text>
               )}
         </Box>

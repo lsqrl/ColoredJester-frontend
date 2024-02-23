@@ -39,7 +39,7 @@ const abi = [
             "type": "uint256"
           }
         ],
-        "internalType": "struct GreaterFool.SpreadData",
+        "internalType": "struct ColoredJester.SpreadData",
         "name": "_spreadData",
         "type": "tuple"
       },
@@ -578,7 +578,7 @@ const abi = [
             "type": "uint256"
           }
         ],
-        "internalType": "struct GreaterFool.SpreadData",
+        "internalType": "struct ColoredJester.SpreadData",
         "name": "_spreadData",
         "type": "tuple"
       }
