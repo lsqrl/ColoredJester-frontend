@@ -243,7 +243,7 @@ const EarnContainer: FC = () => {
               width="100%" 
               marginTop="2"
               backgroundColor={isBuyButtonDisabled ? "gray" : "darkgreen"}
-              _hover={{ backgroundColor: isBuyButtonDisabled ? "gray" : isButtonRedeemClicked ? isRedeemButtonDisabled ? "gray" : "darkred" : "green" }}
+              _hover={{ backgroundColor: isBuyButtonDisabled && isButtonBuyClicked ? "gray" : isButtonRedeemClicked ? isRedeemButtonDisabled ? "gray" : "darkred" : "green" }}
               isDisabled={(isButtonBuyClicked && isBuyButtonDisabled) || (isButtonRedeemClicked && isRedeemButtonDisabled)}
               onClick={() => isButtonBuyClicked ? signerUnderlyingAllowance! < buyAmount ? approveUnderlying?.() : buy?.() : redeem?.()}
             >
