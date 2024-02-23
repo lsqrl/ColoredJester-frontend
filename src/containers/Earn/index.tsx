@@ -182,6 +182,9 @@ const EarnContainer: FC = () => {
       signerUnderlyingBalanceData, 
       signerTokenBalanceData]);
 
+  const backgroundButtonColor = isButtonBuyClicked || isButtonRedeemClicked ? 
+    isButtonBuyClicked ? isBuyButtonDisabled ? "gray" : "darkgreen" : isRedeemButtonDisabled ? "gray" : "darkred" : "gray";
+  
   return (
     <Box className={classNames([
       "flex flex-col", 
@@ -243,7 +246,7 @@ const EarnContainer: FC = () => {
               width="100%" 
               marginTop="2"
               backgroundColor={isBuyButtonDisabled ? "gray" : "darkgreen"}
-              _hover={{ backgroundColor: isBuyButtonDisabled && isButtonBuyClicked ? "gray" : isButtonRedeemClicked ? isRedeemButtonDisabled ? "gray" : "darkred" : "green" }}
+              _hover={{ backgroundColor:  backgroundButtonColor}}
               isDisabled={(isButtonBuyClicked && isBuyButtonDisabled) || (isButtonRedeemClicked && isRedeemButtonDisabled)}
               onClick={() => isButtonBuyClicked ? signerUnderlyingAllowance! < buyAmount ? approveUnderlying?.() : buy?.() : redeem?.()}
             >
@@ -280,7 +283,7 @@ const EarnContainer: FC = () => {
         <Box as="footer" width="100%" position={{ base: "fixed", md: "fixed" }} bottom="0" p="4" bg="rgb(14, 142, 227)">
         <Stack direction={{ base: "column", md: "row" }} spacing="3" align="center">
           <Text textAlign="center">Follow us on{" "}
-            <Link href="https://discord.gg/2TDmjAJz" isExternal color="yellow.500">
+            <Link href="https://discord.gg/cCRMajbm" isExternal color="yellow.500">
               Discord
             </Link>
             {" "}and{" "}
